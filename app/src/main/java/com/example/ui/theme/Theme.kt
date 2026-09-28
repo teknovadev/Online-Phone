@@ -1,0 +1,62 @@
+package com.example.ui.theme
+
+import android.app.Activity
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+
+private val DarkColorScheme = darkColorScheme(
+    primary = TurkmenCyan,
+    onPrimary = BackgroundDark,
+    primaryContainer = SurfaceVariantDark,
+    onPrimaryContainer = TurkmenCyanGlow,
+    secondary = TurkmenEmerald,
+    onSecondary = BackgroundDark,
+    secondaryContainer = SurfaceContainerHighest,
+    onSecondaryContainer = TurkmenEmerald,
+    tertiary = TeknovaPurple,
+    background = BackgroundDark,
+    onBackground = TextPrimary,
+    surface = SurfaceDark,
+    onSurface = TextPrimary,
+    surfaceVariant = SurfaceVariantDark,
+    onSurfaceVariant = TextSecondary,
+    outline = OutlineDark,
+    outlineVariant = OutlineVariantDark,
+    error = ErrorRed,
+    onError = TextPrimary
+)
+
+@Composable
+fun TurkmenAiTheme(
+    darkTheme: Boolean = true, // Default to true for premium dark experience
+    content: @Composable () -> Unit
+) {
+    val colorScheme = DarkColorScheme
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as? Activity)?.window
+            if (window != null) {
+                @Suppress("DEPRECATION")
+                window.statusBarColor = BackgroundDark.toArgb()
+                @Suppress("DEPRECATION")
+                window.navigationBarColor = BackgroundDark.toArgb()
+                val insetsController = WindowCompat.getInsetsController(window, view)
+                insetsController.isAppearanceLightStatusBars = false
+                insetsController.isAppearanceLightNavigationBars = false
+            }
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}

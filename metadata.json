@@ -1,0 +1,6 @@
+{
+  "name": "Türkmen AI",
+  "description": "TEKNOVA tarafından geliştirilen modern, akıllı ve hızlı Türkmen AI yapay zekâ asistanı.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
